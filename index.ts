@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import { server } from './server/index';
+
+console.log(`${server.url}`);
