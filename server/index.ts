@@ -1,5 +1,4 @@
-import type { Server } from "bun";
-import type { BodyInit } from "undici-types";
+import { Server } from "bun";
 
 const server: Server = Bun.serve({
   port: 1234,
@@ -17,7 +16,10 @@ const server: Server = Bun.serve({
       case "/utilidades":
         return new Response("Utilidades");
       case "/":
-        return new Response("Início");
+        return new Response(Bun.file("./client/pages/homepage/index.html"), {
+          headers: { "Content-Type": "text/html" },
+          status: 200,
+        });
       default:
         return new Response("404");
     }
