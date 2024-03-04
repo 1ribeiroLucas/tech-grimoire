@@ -1,29 +1,29 @@
-import { Server } from "bun";
+import { serve, file } from "bun";
 
-const server: Server = Bun.serve({
-  port: 1234,
+function appServer(port: number): void {
+  serve({
+    port,
+    fetch(req: Request): Response | Promise<Response> {
+      const path = new URL(req.url).pathname;
 
-  async fetch(request) {
-    const path = new URL(request.url).pathname;
+      const init: ResponseInit = {
+        headers: {
+          "Content-Type": "text/html"
+        },
+        status: 200,
+        statusText: "Uma dádiva dos ninjas.",
+      }
 
-    switch (path) {
-      case "/sobre":
-        return new Response("Sobre mim");
-      case "/textos":
-        return new Response("Textos");
-      case "/projetos":
-        return new Response("Projetos");
-      case "/utilidades":
-        return new Response("Utilidades");
-      case "/":
-        return new Response(Bun.file("./client/pages/homepage/index.html"), {
-          headers: { "Content-Type": "text/html" },
-          status: 200,
-        });
-      default:
-        return new Response("404");
-    }
-  },
-});
+      switch (path) {
+        case '/algoritmos':
+          return new Response(file("./client/pages/algorithms/index.html"), init);
+        case '/estruturas-de-dados':
+          return new Response(file("./client/pages/data-structures/index.html"), init);
+        default:
+          return new Response(file("./client/pages/homepage/index.html"), init);
+      }
+    },
+  });
+}
 
-export { server };
+export { appServer };

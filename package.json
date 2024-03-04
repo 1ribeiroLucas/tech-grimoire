@@ -1,9 +1,9 @@
 {
   "name": "tech-grimoire",
-  "main": "index.ts",
+  "main": "main.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "bun --hot run main.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
