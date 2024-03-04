@@ -6,6 +6,7 @@
     "start": "bun --hot run main.ts"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^13.6.2",
     "@types/bun": "latest"
   },
   "peerDependencies": {

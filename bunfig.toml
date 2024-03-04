@@ -1,0 +1,7 @@
+preload = ["./app.setup.ts", "./global.styles.css"]
+
+[loader]
+".css" = "css"
+
+[test]
+preload = "./domTestingSetup.ts"
